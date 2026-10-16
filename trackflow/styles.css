@@ -1,0 +1,69 @@
+/* ==========================================================================
+   TrackFlow — Hito 1 | styles.css
+   Estilos complementarios a Tailwind CSS
+   ========================================================================== */
+
+/* HTML general */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------------------------------
+   Estados de error en campos del formulario
+   -------------------------------------------------------------------------- */
+
+/* Clase que se añade a inputs/selects/textarea con valor inválido */
+.input-error {
+  border: 2px solid #dc2626 !important;   /* borde rojo */
+  box-shadow: 0 0 0 1px #dc2626;          /* refuerza el borde */
+  background-color: #fef2f2;              /* fondo rojo muy suave */
+}
+
+/* Mensaje de error bajo cada campo (se rellena desde validation.js) */
+.error-message {
+  display: block;
+  min-height: 1.25em;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  color: #dc2626;
+}
+
+.error-message:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Advertencia de restricción (volumen 0-100) — clase complementaria
+   Crédito visual al marcado Tailwind ya incluido en application.html
+   -------------------------------------------------------------------------- */
+
+.volume-warning {
+  border-left-width: 6px;
+}
+
+.volume-warning::before {
+  content: "⚠️ ";
+}
+
+/* --------------------------------------------------------------------------
+   Mensaje de éxito (suaviza/refuerza lo definido con Tailwind)
+   -------------------------------------------------------------------------- */
+
+#success-message h2 {
+  color: #14532d;
+}
+
+#success-message a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Accesibilidad: foco visible consistente
+   -------------------------------------------------------------------------- */
+
+.form-field input[type="checkbox"],
+.form-field input[type="radio"] {
+  accent-color: #a3e635;
+}

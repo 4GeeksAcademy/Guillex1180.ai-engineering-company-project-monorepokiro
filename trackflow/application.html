@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicitar información — TrackFlow</title>
+  <meta name="description" content="Solicita información sobre los servicios de logística de TrackFlow para tu e-commerce." />
+
+  <!-- Tailwind CSS vía CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Estilos complementarios -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- ===== HEADER ===== -->
+  <header class="bg-slate-900">
+    <div class="mx-auto flex max-w-3xl items-center justify-between px-4 py-4">
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="inline-block h-8 w-8 rounded bg-lime-400 text-slate-900 font-black grid place-items-center text-lg">T</span>
+        <span class="text-xl font-bold text-white">TrackFlow</span>
+      </a>
+      <a href="index.html" class="text-sm font-medium text-slate-300 hover:text-lime-300 transition-colors">← Volver al inicio</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-4 py-12">
+
+    <h1 class="mb-2 text-3xl font-bold text-slate-900">Solicita información</h1>
+    <p class="mb-10 text-slate-600">
+      Cuéntanos sobre tu empresa y te contactaremos para agendar una llamada. Solo trabajamos con
+      marcas de e-commerce que buscan externalizar su logística.
+    </p>
+
+    <!-- ===== Mensaje de éxito (oculto por defecto) ===== -->
+    <div id="success-message" class="hidden rounded-2xl border border-lime-200 bg-lime-50 p-8 text-center" role="status" aria-live="polite">
+      <h2 class="mb-4 text-2xl font-bold text-slate-900">¡Gracias por tu interés en TrackFlow!</h2>
+      <p class="mb-4 text-slate-700">
+        Hemos recibido tu solicitud. Nuestro equipo comercial revisará tu información y te contactará
+        en las próximas 24-48 horas para agendar una llamada y conocer tus necesidades logísticas en detalle.
+      </p>
+      <p class="text-slate-700">
+        Si tienes alguna consulta urgente, escríbenos directamente a
+        <a href="mailto:comercial@trackflow.com" class="font-semibold text-slate-900 underline">comercial@trackflow.com</a>
+      </p>
+    </div>
+
+    <!-- ===== Formulario de captación de leads ===== -->
+    <form id="lead-form" novalidate class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <!-- Nombre de la empresa -->
+        <div class="form-field md:col-span-2">
+          <label for="company-name" class="mb-1 block text-sm font-semibold text-slate-800">
+            Nombre de la empresa <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <input type="text" id="company-name" name="company_name" autocomplete="organization"
+                 class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                 placeholder="Ej. MiTienda SL" />
+          <span class="error-message" id="company-name-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Persona de contacto -->
+        <div class="form-field md:col-span-2">
+          <label for="contact-person" class="mb-1 block text-sm font-semibold text-slate-800">
+            Persona de contacto <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <input type="text" id="contact-person" name="contact_person" autocomplete="name"
+                 class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                 placeholder="Nombre y apellido" />
+          <span class="error-message" id="contact-person-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Email corporativo -->
+        <div class="form-field">
+          <label for="email" class="mb-1 block text-sm font-semibold text-slate-800">
+            Email corporativo <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                 placeholder="nombre@empresa.com" />
+          <span class="error-message" id="email-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-field">
+          <label for="phone" class="mb-1 block text-sm font-semibold text-slate-800">
+            Teléfono <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel"
+                 class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                 placeholder="+1 213 555 0147" />
+          <span class="error-message" id="phone-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Sitio web de la empresa (opcional) -->
+        <div class="form-field md:col-span-2">
+          <label for="website" class="mb-1 block text-sm font-semibold text-slate-800">
+            Sitio web de la empresa <span class="text-slate-400">(opcional)</span>
+          </label>
+          <input type="url" id="website" name="website" autocomplete="url"
+                 class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                 placeholder="https://www.tuempresa.com" />
+          <span class="error-message" id="website-error" aria-live="polite"></span>
+        </div>
+
+        <!-- País de operación principal -->
+        <div class="form-field">
+          <label for="country" class="mb-1 block text-sm font-semibold text-slate-800">
+            País de operación principal <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <select id="country" name="country"
+                  class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+            <option value="">Selecciona una opción</option>
+            <option value="Estados Unidos">Estados Unidos</option>
+            <option value="España">España</option>
+            <option value="Ambos">Ambos</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <span class="error-message" id="country-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Tipo de producto -->
+        <div class="form-field">
+          <label for="product-type" class="mb-1 block text-sm font-semibold text-slate-800">
+            Tipo de producto <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <select id="product-type" name="product_type"
+                  class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+            <option value="">Selecciona una opción</option>
+            <option value="Moda">Moda</option>
+            <option value="Electrónica">Electrónica</option>
+            <option value="Cosmética">Cosmética</option>
+            <option value="Alimentación">Alimentación</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <span class="error-message" id="product-type-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Volumen mensual estimado de envíos -->
+        <div class="form-field md:col-span-2">
+          <label for="monthly-volume" class="mb-1 block text-sm font-semibold text-slate-800">
+            Volumen mensual estimado de envíos <span class="text-lime-500" aria-hidden="true">*</span>
+          </label>
+          <select id="monthly-volume" name="monthly_volume"
+                  class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+            <option value="">Selecciona una opción</option>
+            <option value="0-100">0-100</option>
+            <option value="101-500">101-500</option>
+            <option value="501-2000">501-2000</option>
+            <option value="2000+">2000+</option>
+            <option value="No estoy seguro">No estoy seguro</option>
+          </select>
+          <span class="error-message" id="monthly-volume-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Advertencia de restricción para volumen "0-100" (oculto por defecto) -->
+        <div id="volume-warning" class="hidden rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-800 md:col-span-2" role="alert">
+          Para volúmenes menores a 100 envíos mensuales, nuestros servicios podrían no ser la solución más eficiente. ¿Seguro que quieres continuar?
+        </div>
+
+        <!-- Servicios de interés (checkboxes) -->
+        <fieldset class="form-field md:col-span-2">
+          <legend class="mb-2 block text-sm font-semibold text-slate-800">
+            Servicios de interés <span class="text-lime-500" aria-hidden="true">*</span>
+          </legend>
+          <div class="flex flex-wrap gap-4">
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input type="checkbox" name="services" value="Almacenaje" class="h-4 w-4 rounded border-slate-300 text-lime-500 focus:ring-lime-400" />
+              Almacenaje
+            </label>
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input type="checkbox" name="services" value="Última milla" class="h-4 w-4 rounded border-slate-300 text-lime-500 focus:ring-lime-400" />
+              Última milla
+            </label>
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input type="checkbox" name="services" value="Logística inversa" class="h-4 w-4 rounded border-slate-300 text-lime-500 focus:ring-lime-400" />
+              Logística inversa
+            </label>
+          </div>
+          <span class="error-message" id="services-error" aria-live="polite"></span>
+        </fieldset>
+
+        <!-- ¿Actualmente trabajas con otro 3PL? (radio) -->
+        <fieldset class="form-field md:col-span-2">
+          <legend class="mb-2 block text-sm font-semibold text-slate-800">
+            ¿Actualmente trabajas con otro 3PL? <span class="text-lime-500" aria-hidden="true">*</span>
+          </legend>
+          <div class="flex flex-wrap gap-4">
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input type="radio" name="current-3pl" value="Sí" class="h-4 w-4 border-slate-300 text-lime-500 focus:ring-lime-400" />
+              Sí
+            </label>
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input type="radio" name="current-3pl" value="No" class="h-4 w-4 border-slate-300 text-lime-500 focus:ring-lime-400" />
+              No
+            </label>
+            <label class="inline-flex items-center gap-2 text-sm text-slate-700">
+              <input type="radio" name="current-3pl" value="Estoy evaluando opciones" class="h-4 w-4 border-slate-300 text-lime-500 focus:ring-lime-400" />
+              Estoy evaluando opciones
+            </label>
+          </div>
+          <span class="error-message" id="current-3pl-error" aria-live="polite"></span>
+        </fieldset>
+
+        <!-- Comentarios o necesidades específicas -->
+        <div class="form-field md:col-span-2">
+          <label for="comments" class="mb-1 block text-sm font-semibold text-slate-800">
+            Comentarios o necesidades específicas <span class="text-slate-400">(opcional)</span>
+          </label>
+          <textarea id="comments" name="comments" rows="4" maxlength="500"
+                    class="w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"
+                    placeholder="Cuéntanos sobre tus necesidades logísticas..."></textarea>
+          <span class="error-message" id="comments-error" aria-live="polite"></span>
+          <span id="char-counter" class="mt-1 block text-right text-xs text-slate-500">Quedan 500 caracteres</span>
+        </div>
+
+        <!-- Acepto política de privacidad -->
+        <div class="form-field md:col-span-2">
+          <label class="inline-flex items-start gap-2 text-sm text-slate-700">
+            <input type="checkbox" id="privacy" name="privacy"
+                   class="mt-0.5 h-4 w-4 rounded border-slate-300 text-lime-500 focus:ring-lime-400" />
+            <span>
+              Acepto la política de privacidad <span class="text-lime-500" aria-hidden="true">*</span>
+            </span>
+          </label>
+          <span class="error-message" id="privacy-error" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <button type="submit"
+                class="w-full rounded-lg bg-lime-400 px-6 py-3 text-base font-semibold text-slate-900 hover:bg-lime-300 transition-colors">
+          Enviar solicitud
+        </button>
+      </div>
+    </form>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-slate-200 bg-white py-8">
+    <div class="mx-auto flex max-w-3xl flex-col items-center justify-between gap-4 px-4 md:flex-row">
+      <p class="text-sm text-slate-500">© 2025 TrackFlow. Todos los derechos reservados.</p>
+      <a href="https://linkedin.com/company/trackflow" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-slate-900">LinkedIn</a>
+    </div>
+  </footer>
+
+  <!-- Lógica de validación -->
+  <script src="validation.js"></script>
+</body>
+</html>
